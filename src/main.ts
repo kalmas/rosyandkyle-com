@@ -8,7 +8,8 @@ const app = new App({
 		firstName: '',
 		lastName: '',
 		rsvp: undefined,
-		partner: undefined
+		partner: undefined,
+		complete: false
 	}
 });
 
