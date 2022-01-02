@@ -5,9 +5,9 @@ const app = new App({
 	target: document.body,
 	props: {
 		greeting: 'friend',
-		firstName: '',
-		lastName: '',
-		rsvp: undefined,
+		firstName: 'k',
+		lastName: 'k',
+		rsvp: 'yes',
 		partner: undefined,
 		complete: false
 	}

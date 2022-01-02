@@ -1,9 +1,9 @@
 <script lang="ts">
-    export let value: string = '';
-    export let label: string = '';
+    export let value: string = "";
+    export let label: string = "";
 
     export let handleBlur = (e) => {};
-
+    export let pattern;
 </script>
 
 <label>
@@ -11,6 +11,7 @@
         type="text"
         bind:value
         placeholder={label}
+        {pattern}
         on:blur={handleBlur}
         class="form-control-lg"
     />
@@ -29,5 +30,9 @@
         margin-bottom: 0px;
         font-size: small;
         color: gray;
+    }
+
+    input:invalid {
+        background-color: rgb(240, 192, 192);
     }
 </style>
