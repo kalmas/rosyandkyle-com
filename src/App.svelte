@@ -8,7 +8,7 @@
 	export let partner: string;
 	export let complete: boolean;
 
-	let covid: string;
+	let covid: string = "vaccinated";
 	let showDetails: boolean;
 	let email: string;
 	let phone: string;
@@ -56,18 +56,23 @@
 			to help us prepare.
 		</p>
 
-		<form>
+		<form class="needs-validation" novalidate>
 			<div class="accordion">
 				<div class="form-group mb-2">
 					<div class="row mb-2">
 						<Input
-							bind:value={firstName}
+							bind:value={name}
 							handleBlur={changeGreeting}
 							label="First Name"
+							pattern="^\w.*"
 						/>
 					</div>
 					<div class="row mb-2">
-						<Input bind:value={lastName} label="Last Name" />
+						<Input
+							bind:value={lastName}
+							label="Last Name"
+							pattern="^\w.*"
+						/>
 					</div>
 				</div>
 
@@ -214,13 +219,13 @@
 				{/if}
 
 				<div class="form-group">
-				<div class="row mb-4">
-					<button
-						disabled={complete === false}
-						type="submit"
-						class="btn btn-dark btn-block">Submit</button
-					>
-				</div>
+					<div class="row mb-4">
+						<button
+							disabled={complete === false}
+							type="submit"
+							class="btn btn-dark btn-block">Submit</button
+						>
+					</div>
 				</div>
 			</div>
 		</form>
