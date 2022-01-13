@@ -67,3 +67,7 @@ button:focus {
 .hidden {
 	visibility: hidden;
 }
+
+.active {
+	text-decoration: underline;
+}
