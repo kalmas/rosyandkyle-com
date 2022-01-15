@@ -3,8 +3,8 @@
     import helpers from "../helpers";
 
     export let greeting: string = "friend";
-    export let name: string = "";
-    export let rsvp: string;
+    export let name: string = "s";
+    export let rsvp: string = "yes";
     export let partner: string;
     export let complete: boolean = false;
 
@@ -30,22 +30,13 @@
             complete = false;
         }
     };
-
-    const covidChange = (e) => {
-        covid = e.target.value;
-
-        if (covid !== undefined) {
-            showDetails = true;
-        }
-    };
 </script>
 
 <div class="container">
     <h1>Hello, {greeting}!</h1>
     <p>
-        Thanks for RSVPing to {helpers.ourNames()}'s wedding. Please tell us a
-        few things to help us prepare. If this form isn't working right, text
-        Kyle.
+        Thanks for RSVPing to our wedding! Please tell us a few things to help
+        us prepare. If this form isn't working right, text Kyle.
     </p>
 
     <form class="needs-validation" novalidate>
@@ -60,36 +51,37 @@
                     />
                 </div>
             </div>
-
-            <div class="btn-group mb-4 mx-auto" role="group">
-                <input
-                    checked={rsvp == "yes"}
-                    on:change={rsvpChange}
-                    value="yes"
-                    disabled={!name.length}
-                    type="radio"
-                    class="btn-check"
-                    name="rsvp"
-                    autocomplete="off"
-                    id="attending"
-                />
-                <label class="btn btn-outline-dark" for="attending"
-                    >I'll Be There ✅</label
-                >
-                <input
-                    checked={rsvp == "no"}
-                    on:change={rsvpChange}
-                    value="no"
-                    disabled={!name.length}
-                    type="radio"
-                    class="btn-check"
-                    name="rsvp"
-                    autocomplete="off"
-                    id="not-attending"
-                />
-                <label class="btn btn-outline-dark" for="not-attending"
-                    >I Can't Make It ❌</label
-                >
+            <div class="row">
+                <div class="btn-group mb-4 mx-auto" role="group">
+                    <input
+                        checked={rsvp == "yes"}
+                        on:change={rsvpChange}
+                        value="yes"
+                        disabled={!name.length}
+                        type="radio"
+                        class="btn-check"
+                        name="rsvp"
+                        autocomplete="off"
+                        id="attending"
+                    />
+                    <label class="btn btn-outline-dark" for="attending"
+                        >I'll Be There ✅</label
+                    >
+                    <input
+                        checked={rsvp == "no"}
+                        on:change={rsvpChange}
+                        value="no"
+                        disabled={!name.length}
+                        type="radio"
+                        class="btn-check"
+                        name="rsvp"
+                        autocomplete="off"
+                        id="not-attending"
+                    />
+                    <label class="btn btn-outline-dark" for="not-attending"
+                        >I Can't Make It ❌</label
+                    >
+                </div>
             </div>
 
             <div class="collapse mb-2" class:show={rsvp == "yes"}>
@@ -110,52 +102,48 @@
                     nec.
                 </div>
 
-                <div class="btn-group center" role="group">
-                    <input
-                        checked={covid == "vaccinated"}
-                        on:change={covidChange}
-                        value="vaccinated"
-                        type="radio"
-                        class="btn-check"
-                        name="covid"
-                        autocomplete="off"
-                        id="vaccinated"
-                    />
-                    <label class="btn btn-outline-dark" for="vaccinated"
-                        >I'll Be Fully Vaccinated 💉</label
-                    >
-                    <input
-                        checked={covid == "test"}
-                        on:change={covidChange}
-                        value="test"
-                        type="radio"
-                        class="btn-check"
-                        name="covid"
-                        autocomplete="off"
-                        id="test"
-                    />
-                    <label class="btn btn-outline-dark" for="test"
-                        >I'll Take A Test 🧪</label
-                    >
-                    <input
-                        checked={covid == "noresponse"}
-                        on:change={covidChange}
-                        value="noresponse"
-                        type="radio"
-                        class="btn-check"
-                        name="covid"
-                        autocomplete="off"
-                        id="noresponse"
-                    />
-                    <label class="btn btn-outline-dark" for="noresponse"
-                        >I'd Rather Not Say 🥸</label
-                    >
+                <div class="row">
+                    <div class="btn-group center mb-4" role="group">
+                        <input
+                            checked={covid == "vaccinated"}
+                            value="vaccinated"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="vaccinated"
+                        />
+                        <label class="btn btn-outline-dark" for="vaccinated"
+                            >I'll Be Fully Vaccinated 💉</label
+                        >
+                        <input
+                            checked={covid == "test"}
+                            value="test"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="test"
+                        />
+                        <label class="btn btn-outline-dark" for="test"
+                            >I'll Take A Test 🧪</label
+                        >
+                        <input
+                            checked={covid == "noresponse"}
+                            value="noresponse"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="noresponse"
+                        />
+                        <label class="btn btn-outline-dark" for="noresponse"
+                            >I'd Rather Not Say 🥸</label
+                        >
+                    </div>
                 </div>
-            </div>
 
-            {#if showDetails == true}
                 <div class="form-group mb-2">
-                    <p class="mb-2">How can we get in contact with you?</p>
                     <div class="row mb-2">
                         <Input
                             bind:value={email}
@@ -163,7 +151,7 @@
                             label="Email Address"
                         />
                     </div>
-                    <div class="row mb-2">
+                    <div class="row">
                         <Input
                             bind:value={phone}
                             pattern="^\d&#123;3&#125;-?\d&#123;3&#125;-?\d&#123;4&#125;$"
@@ -172,9 +160,31 @@
                     </div>
                 </div>
 
-                <p class="mb-2">Are you bringing a partner?</p>
-                <div class="btn-group mb-2" role="group">
+                <div class="form-check">
                     <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="partner"
+                    />
+                    <label class="form-check-label" for="partner">
+                        I'm bringing a partner.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="kids"
+                        checked
+                    />
+                    <label class="form-check-label" for="kids">
+                        I'm bringing my kid(s).
+                    </label>
+                </div>
+
+                <!-- <input
                         bind:group={partner}
                         type="radio"
                         class="btn-check"
@@ -197,9 +207,8 @@
                     />
                     <label class="btn btn-outline-dark" for="noPartner"
                         >No</label
-                    >
-                </div>
-            {/if}
+                    > -->
+            </div>
 
             <div class="form-group">
                 <div class="row mb-4">
@@ -216,7 +225,6 @@
 </div>
 
 <style>
-
     h1 {
         color: #f5f4f4;
         text-transform: uppercase;
