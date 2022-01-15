@@ -68,6 +68,6 @@ button:focus {
 	visibility: hidden;
 }
 
-.active {
-	text-decoration: underline;
+main {
+	border: #212529 solid 3px;
 }

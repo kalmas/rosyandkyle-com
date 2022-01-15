@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="btn-group mb-4" role="group">
+            <div class="btn-group mb-4 mx-auto" role="group">
                 <input
                     checked={rsvp == "yes"}
                     on:change={rsvpChange}
@@ -110,7 +110,7 @@
                     nec.
                 </div>
 
-                <div class="btn-group mb-4" role="group">
+                <div class="btn-group center" role="group">
                     <input
                         checked={covid == "vaccinated"}
                         on:change={covidChange}
@@ -216,21 +216,12 @@
 </div>
 
 <style>
-    main {
-        padding: 1em;
-        max-width: 240px;
-        margin: 0 auto;
-    }
 
     h1 {
         color: #f5f4f4;
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 150;
-    }
-
-    main {
-        max-width: none;
     }
 
     .submit {

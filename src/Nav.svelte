@@ -1,10 +1,8 @@
 <script lang="ts">
-    import { Router, Link, Route } from "svelte-routing";
+    import { Link } from "svelte-routing";
     import helpers from "./helpers";
 
-    export var url: string = "hello!";
-
-    function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
+    function getProps({ href, isPartiallyCurrent, isCurrent }) {
         const isActive =
             href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
 
@@ -19,7 +17,7 @@
 <div>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
-            <Link to="/" class="navbar-brand">{helpers.ourInitials()}</Link>
+            <div class="navbar-brand">{helpers.ourInitials()}</div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <Link to="/" {getProps}>Home</Link>
@@ -32,3 +30,14 @@
     </nav>
 </div>
 
+<style>
+    .navbar-brand {
+        font-size: xxx-large;
+        font-weight: 100;
+    }
+
+    .nav-item {
+        font-size: x-large;
+        font-weight: 100;
+    }
+</style>

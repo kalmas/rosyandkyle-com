@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Router, Link, Route } from "svelte-routing";
+    import { Router, Route } from "svelte-routing";
     import Nav from "./Nav.svelte";
 
     import Home from "./routes/Home.svelte";
@@ -14,4 +14,5 @@
         <Route path="rsvp"><RSVP /></Route>
         <Route path="/"><Home /></Route>
     </main>
+    <br />
 </Router>
