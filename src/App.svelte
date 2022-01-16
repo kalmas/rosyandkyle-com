@@ -14,5 +14,6 @@
         <Route path="rsvp"><RSVP /></Route>
         <Route path="/"><Home /></Route>
     </main>
+    <div class="text">Questions? Text Kyle at <a href="tel:757-407-1298">(757) 407-1298</a>.</div>
     <br />
 </Router>
