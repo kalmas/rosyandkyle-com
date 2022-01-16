@@ -1,16 +1,19 @@
 <script lang="ts">
     export let greeting: string = "friend";
-    export let name: string = "";
+    
     export let partnerName: string = "";
     export let kidName: string = "";
 
-    let rsvp: string;
+    let name: string = "";
+    let rsvp: string = undefined;
     let covid: string;
-    let phone: string = "";
+    let phone: string;
     let partner: boolean = false;
     let kids: boolean = false;
     let complete: boolean = false;
     let submission: object;
+    let error: boolean = false;
+    let errorMsg: string;
 
     const changeGreeting = (e) => {
         if (e.target.value.length) {
@@ -25,6 +28,24 @@
     };
 
     const handleSubmit = (e) => {
+        if (name.length == 0) {
+            error = true;
+            errorMsg = "Please tell us your name.";
+            return;
+        }
+
+        if (rsvp === undefined) {
+            error = true;
+            errorMsg = "Please tell us if you can come.";
+            return;
+        }
+
+        if (rsvp == "yes" && phone === undefined) {
+            error = true;
+            errorMsg = "Please tell give us a phone number.";
+            return;
+        }
+
         submission = {
             name,
             rsvp,
@@ -44,198 +65,202 @@
     <h1>RSVP</h1>
     <h2>Hello, {greeting}!</h2>
 
-    <div class="mb-3 collapse" class:show={complete}>
-        <p>Thanks for responding!</p>
+    {#if complete == true}
+        <div class="mb-3">
+            <p>Thanks for responding!</p>
 
-        {JSON.stringify(submission)}
-    </div>
-
-    <form
-        class="mb-3 collapse"
-        novalidate
-        on:submit|preventDefault={handleSubmit}
-        class:show={!complete}
-    >
-        <p>
-            Thanks for RSVPing to our wedding! Please answer a few things to
-            help us prepare.
-        </p>
-        <div class="form-floating mb-3">
-            <input
-                type="text"
-                bind:value={name}
-                on:blur={changeGreeting}
-                class="form-control"
-                id="full-name"
-                pattern="^[\w.-]+(?: [\w.-]+)+$"
-                placeholder="Your Name"
-                required
-            />
-            <label for="full-name">Your Name</label>
+            {JSON.stringify(submission)}
         </div>
+    {/if}
 
-        <div class="row mb-5">
-            <div class="btn-group mx-auto" role="group">
-                <input
-                    checked={rsvp == "yes"}
-                    on:change={rsvpChange}
-                    value="yes"
-                    disabled={!name.length}
-                    type="radio"
-                    class="btn-check"
-                    name="rsvp"
-                    autocomplete="off"
-                    id="attending"
-                />
-                <label class="btn btn-outline-dark" for="attending"
-                    >I'll Be There ✅</label
-                >
-                <input
-                    checked={rsvp == "no"}
-                    on:change={rsvpChange}
-                    value="no"
-                    disabled={!name.length}
-                    type="radio"
-                    class="btn-check"
-                    name="rsvp"
-                    autocomplete="off"
-                    id="not-attending"
-                />
-                <label class="btn btn-outline-dark" for="not-attending"
-                    >I Can't Make It ❌</label
-                >
-            </div>
-        </div>
-
-        <div class="collapse" class:show={rsvp == "yes"}>
-            <div class="form-group mb-5">
-                <p class="text-justify">
-                    <strong>Ok let's talk about Covid stuff.</strong> It seems like
-                    we will still be dealing with Covid-19 this spring so we've got
-                    to set some ground rules.
-                </p>
-
-                <div class="row">
-                    <div class="btn-group mx-auto" role="group">
-                        <input
-                            checked={covid == "vaccinated"}
-                            value="vaccinated"
-                            type="radio"
-                            class="btn-check"
-                            name="covid"
-                            autocomplete="off"
-                            id="vaccinated"
-                        />
-                        <label class="btn btn-outline-dark" for="vaccinated"
-                            >I'll Be Fully Vaccinated 💉</label
-                        >
-                        <input
-                            checked={covid == "test"}
-                            value="test"
-                            type="radio"
-                            class="btn-check"
-                            name="covid"
-                            autocomplete="off"
-                            id="test"
-                        />
-                        <label class="btn btn-outline-dark" for="test"
-                            >I'll Take A Test 🧪</label
-                        >
-                        <input
-                            checked={covid == "noresponse"}
-                            value="noresponse"
-                            type="radio"
-                            class="btn-check"
-                            name="covid"
-                            autocomplete="off"
-                            id="noresponse"
-                        />
-                        <label class="btn btn-outline-dark" for="noresponse"
-                            >I'd Rather Not Say 🥸</label
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <h3>Give us a number to text you at</h3>
+    {#if complete != true}
+        <form class="mb-3" novalidate on:submit|preventDefault={handleSubmit}>
+            <p>
+                Thanks for RSVPing to our wedding! Please answer a few things to
+                help us prepare.
+            </p>
             <div class="form-floating mb-3">
                 <input
-                    type="tel"
-                    bind:value={phone}
+                    type="text"
+                    bind:value={name}
+                    on:blur={changeGreeting}
                     class="form-control"
-                    id="phone"
-                    pattern={"^[0-9]{3}-?[0-9]{3}-?[0-9]{4}$"}
-                    placeholder="Your Phone (111-111-1111)"
+                    id="full-name"
+                    pattern="^[\w.-]+(?: [\w.-]+)+$"
+                    placeholder="Your Name"
                     required
                 />
-                <label for="phone">Your Phone (111-111-1111)</label>
+                <label for="full-name">Your Name</label>
             </div>
 
-            <div class="form-group mb-5">
-                <h3>Who are you bringing?</h3>
-                <div class="form-check mb-2">
+            <div class="row mb-5">
+                <div class="btn-group mx-auto" role="group">
                     <input
-                        class="form-check-input"
-                        type="checkbox"
-                        bind:checked={partner}
-                        id="partner"
+                        checked={rsvp == "yes"}
+                        on:change={rsvpChange}
+                        value="yes"
+                        type="radio"
+                        class="btn-check"
+                        name="rsvp"
+                        autocomplete="off"
+                        id="attending"
                     />
-                    <label class="form-check-label" for="partner">
-                        I'm bringing a partner.
-                    </label>
+                    <label class="btn btn-outline-dark" for="attending"
+                        >I'll Be There ✅</label
+                    >
+                    <input
+                        checked={rsvp == "no"}
+                        on:change={rsvpChange}
+                        value="no"
+                        type="radio"
+                        class="btn-check"
+                        name="rsvp"
+                        autocomplete="off"
+                        id="not-attending"
+                    />
+                    <label class="btn btn-outline-dark" for="not-attending"
+                        >I Can't Make It ❌</label
+                    >
                 </div>
-                <div class="collapse" class:show={partner}>
-                    <div class="form-floating mb-3">
+            </div>
+
+            <div class="collapse" class:show={rsvp == "yes"}>
+                <div class="form-group mb-5">
+                    <p class="text-justify">
+                        <strong>Ok let's talk about Covid stuff.</strong> It seems
+                        like we will still be dealing with Covid-19 this spring so
+                        we've got to set some ground rules.
+                    </p>
+
+                    <div class="row">
+                        <div class="btn-group mx-auto" role="group">
+                            <input
+                                checked={covid == "vaccinated"}
+                                value="vaccinated"
+                                type="radio"
+                                class="btn-check"
+                                name="covid"
+                                autocomplete="off"
+                                id="vaccinated"
+                            />
+                            <label class="btn btn-outline-dark" for="vaccinated"
+                                >I'll Be Fully Vaccinated 💉</label
+                            >
+                            <input
+                                checked={covid == "test"}
+                                value="test"
+                                type="radio"
+                                class="btn-check"
+                                name="covid"
+                                autocomplete="off"
+                                id="test"
+                            />
+                            <label class="btn btn-outline-dark" for="test"
+                                >I'll Take A Test 🧪</label
+                            >
+                            <input
+                                checked={covid == "noresponse"}
+                                value="noresponse"
+                                type="radio"
+                                class="btn-check"
+                                name="covid"
+                                autocomplete="off"
+                                id="noresponse"
+                            />
+                            <label class="btn btn-outline-dark" for="noresponse"
+                                >I'd Rather Not Say 🥸</label
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Give us a number to text you at</h3>
+                <div class="form-floating mb-3">
+                    <input
+                        type="tel"
+                        bind:value={phone}
+                        class="form-control"
+                        id="phone"
+                        pattern={"^[0-9]{3}-?[0-9]{3}-?[0-9]{4}$"}
+                        placeholder="Your Phone (111-111-1111)"
+                        required
+                    />
+                    <label for="phone">Your Phone (111-111-1111)</label>
+                </div>
+
+                <div class="form-group mb-5">
+                    <h3>Who are you bringing?</h3>
+                    <div class="form-check mb-2">
                         <input
-                            type="text"
-                            bind:value={partnerName}
-                            class="form-control"
-                            id="partner-name"
-                            pattern="^[\w.-]+(?: [\w.-]+)+$"
-                            placeholder="Partner's Name"
-                            required
+                            class="form-check-input"
+                            type="checkbox"
+                            bind:checked={partner}
+                            id="partner"
                         />
-                        <label for="full-name">Partner's Name</label>
+                        <label class="form-check-label" for="partner">
+                            I'm bringing a partner.
+                        </label>
                     </div>
-                </div>
+                    <div class="collapse" class:show={partner}>
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                bind:value={partnerName}
+                                class="form-control"
+                                id="partner-name"
+                                pattern="^[\w.-]+(?: [\w.-]+)+$"
+                                placeholder="Partner's Name"
+                                required
+                            />
+                            <label for="full-name">Partner's Name</label>
+                        </div>
+                    </div>
 
-                <div class="form-check mb-2">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        bind:checked={kids}
-                        id="kids"
-                    />
-                    <label class="form-check-label" for="kids">
-                        I'm bringing my kid(s).
-                    </label>
-                </div>
-
-                <div class="collapse" class:show={kids}>
-                    <div class="form-floating mb-3">
-                        <textarea
-                            bind:value={kidName}
-                            class="form-control"
-                            placeholder="Kid's Name (Just List 'Em)"
-                            id="kid-names"
-                            required
+                    <div class="form-check mb-2">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            bind:checked={kids}
+                            id="kids"
                         />
-                        <label for="kid-names"
-                            >Kid's Names (List 'Em Here)</label
-                        >
+                        <label class="form-check-label" for="kids">
+                            I'm bringing my kid(s).
+                        </label>
+                    </div>
+
+                    <div class="collapse" class:show={kids}>
+                        <div class="form-floating mb-3">
+                            <textarea
+                                bind:value={kidName}
+                                class="form-control"
+                                placeholder="Kid's Name (Just List 'Em)"
+                                id="kid-names"
+                                required
+                            />
+                            <label for="kid-names"
+                                >Kid's Names (List 'Em Here)</label
+                            >
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row mb-3">
-                <button
-                    type="submit"
-                    class="submit mx-auto btn btn-dark btn-block">Submit</button
-                >
+            <div class="form-group">
+                {#if error}
+                    <div class="alert alert-warning" role="alert">
+                        {errorMsg}
+                    </div>
+                {/if}
+
+                <div class="row mb-3">
+                    <button
+                        type="submit"
+                        class="submit mx-auto btn btn-dark btn-block"
+                        >Submit</button
+                    >
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    {/if}
 </div>
 
 <style>
