@@ -71,3 +71,19 @@ button:focus {
 main {
 	border: #212529 solid 3px;
 }
+
+h1 {
+	color: #f5f4f4;
+	text-transform: uppercase;
+	font-size: 4em;
+	font-weight: 200;
+	margin-top: 0.25em;
+}
+
+h2 {
+	font-weight: 150;
+}
+
+h3 {
+	font-weight: 150;
+}

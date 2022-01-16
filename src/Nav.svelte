@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <Link to="/rsvp" {getProps}>RSVP</Link>
                 </li>
+                <li class="nav-item">
+                    <Link to="/event" {getProps}>Event</Link>
+                </li>
             </ul>
         </div>
     </nav>

@@ -2,12 +2,15 @@
     export let greeting: string = "friend";
     export let name: string = "";
     export let partnerName: string = "";
+    export let kidName: string = "";
 
     let rsvp: string;
     let covid: string;
     let phone: string = "";
     let partner: boolean = false;
     let kids: boolean = false;
+    let complete: boolean = false;
+    let submission: object;
 
     const changeGreeting = (e) => {
         if (e.target.value.length) {
@@ -22,18 +25,41 @@
     };
 
     const handleSubmit = (e) => {
-        console.log(e);
+        submission = {
+            name,
+            rsvp,
+            covid,
+            phone,
+            partner,
+            partnerName,
+            kids,
+            kidName,
+        };
+
+        complete = true;
     };
 </script>
 
 <div class="container">
-    <h1>Hello, {greeting}!</h1>
-    <p>
-        Thanks for RSVPing to our wedding! Please answer a few things to help us
-        prepare.
-    </p>
+    <h1>RSVP</h1>
+    <h2>Hello, {greeting}!</h2>
 
-    <form class="mb-3" novalidate on:submit|preventDefault={handleSubmit}>
+    <div class="mb-3 collapse" class:show={complete}>
+        <p>Thanks for responding!</p>
+
+        {JSON.stringify(submission)}
+    </div>
+
+    <form
+        class="mb-3 collapse"
+        novalidate
+        on:submit|preventDefault={handleSubmit}
+        class:show={!complete}
+    >
+        <p>
+            Thanks for RSVPing to our wedding! Please answer a few things to
+            help us prepare.
+        </p>
         <div class="form-floating mb-3">
             <input
                 type="text"
@@ -131,7 +157,7 @@
                 </div>
             </div>
 
-            <h2>Give us a number to text you at</h2>
+            <h3>Give us a number to text you at</h3>
             <div class="form-floating mb-3">
                 <input
                     type="tel"
@@ -146,7 +172,7 @@
             </div>
 
             <div class="form-group mb-5">
-                <h2>Who are you bringing?</h2>
+                <h3>Who are you bringing?</h3>
                 <div class="form-check mb-2">
                     <input
                         class="form-check-input"
@@ -188,6 +214,7 @@
                 <div class="collapse" class:show={kids}>
                     <div class="form-floating mb-3">
                         <textarea
+                            bind:value={kidName}
                             class="form-control"
                             placeholder="Kid's Name (Just List 'Em)"
                             id="kid-names"
@@ -219,18 +246,6 @@
         background-repeat: no-repeat;
         background-position: right calc(0.375em + 0.1875rem) center;
         background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-    }
-
-    h1 {
-        color: #f5f4f4;
-        text-transform: uppercase;
-        font-size: 4em;
-        font-weight: 150;
-        margin-top: 0.25em;
-    }
-
-    h2 {
-        font-weight: 150;
     }
 
     .submit {
