@@ -1,9 +1,11 @@
 <script lang="ts">
-    export let greeting: string = "friend";
-    
-    export let partnerName: string = "";
-    export let kidName: string = "";
+    import { v4 as uuidv4 } from "uuid";
 
+    export let sessionId: string;
+
+    let greeting: string = "friend";
+    let partnerName: string = "";
+    let kidName: string = "";
     let name: string = "";
     let rsvp: string = undefined;
     let covid: string;
@@ -11,9 +13,12 @@
     let partner: boolean = false;
     let kids: boolean = false;
     let complete: boolean = false;
+
     let submission: object;
     let error: boolean = false;
     let errorMsg: string;
+
+    let id: string = uuidv4();
 
     const changeGreeting = (e) => {
         if (e.target.value.length) {
@@ -47,8 +52,10 @@
         }
 
         submission = {
+            id,
+            sessionId,
             name,
-            rsvp,
+            rsvp: rsvp == "yes" ? true : false,
             covid,
             phone,
             partner,
