@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { Link } from "svelte-routing";
     import { v4 as uuidv4 } from "uuid";
 
     export let sessionId: string;
@@ -72,15 +73,20 @@
     <h1>RSVP</h1>
     <h2>Hello, {greeting}!</h2>
 
-    {#if complete == true}
+    {#if complete}
         <div class="mb-3">
             <p>Thanks for responding!</p>
-
-            {JSON.stringify(submission)}
+            {#if rsvp == "yes"}
+                <p>
+                    WWe can't wait to see you! Now check out <Link to="/event"
+                        >the event page</Link
+                    >!
+                </p>
+            {/if}
         </div>
     {/if}
 
-    {#if complete != true}
+    {#if !complete}
         <form class="mb-3" novalidate on:submit|preventDefault={handleSubmit}>
             <p>
                 Thanks for RSVPing to our wedding! Please answer a few things to
