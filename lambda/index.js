@@ -13,4 +13,15 @@ exports.handler = function (event, context, callback) {
     }
 
     dynamo.put(params, callback);
+
+    const response = {
+        statusCode: 201,
+        headers: {
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST"
+        },
+        body: { "message": "Great Job!" }
+    };
+    return response;
 };

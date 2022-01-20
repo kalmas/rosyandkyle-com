@@ -33,22 +33,26 @@
         rsvp = e.target.value;
     };
 
-    const handleSubmit = (e) => {
+    const setError = (msg: string) => {
+        error = true;
+        errorMsg = msg;
+    };
+
+    const handleSubmit = async () => {
+        error = false;
+
         if (name.length == 0) {
-            error = true;
-            errorMsg = "Please tell us your name.";
+            setError("Please tell us your name.");
             return;
         }
 
         if (rsvp === undefined) {
-            error = true;
-            errorMsg = "Please tell us if you can come.";
+            setError("Please tell us if you can come.");
             return;
         }
 
         if (rsvp == "yes" && phone === undefined) {
-            error = true;
-            errorMsg = "Please tell give us a phone number.";
+            setError("Please tell give us a phone number to reach you at.");
             return;
         }
 
@@ -65,6 +69,19 @@
             kidName,
         };
 
+        const response: Response|void = await fetch("https://api.rosyandkyle.com/rsvp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(submission)
+        }).catch(() => {});
+
+        if (!response || !response.ok) {
+            setError("Something unexpected went wrong. Maybe try agian?");
+            return
+        }
+
         complete = true;
     };
 </script>
@@ -78,7 +95,7 @@
             <p>Thanks for responding!</p>
             {#if rsvp == "yes"}
                 <p>
-                    WWe can't wait to see you! Now check out <Link to="/event"
+                    We can't wait to see you! Now check out <Link to="/event"
                         >the event page</Link
                     >!
                 </p>
