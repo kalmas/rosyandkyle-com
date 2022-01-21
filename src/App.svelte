@@ -16,15 +16,15 @@
         <Route path="rsvp"><RSVP {sessionId} /></Route>
         <Route path="/event"><Event /></Route>
         <Route path="/"><Home /></Route>
+        <div class="text-center mb-2">♥︎</div>
     </main>
     <div id="footer">
-        Questions? Text Kyle at <a href="tel:757-407-1298">(757) 407-1298</a>.
+        Questions? Text Kyle at <a href="tel:757-407-1298" class="link-dark">(757) 407-1298</a>.
     </div>
 </Router>
 
 <style>
     #footer {
-        font-size: small;
         text-align: center;
         padding-bottom: 15px;
     }

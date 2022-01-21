@@ -17,11 +17,8 @@
 <div>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
-            <div class="navbar-brand">{helpers.ourInitials()}</div>
+            <div class="navbar-brand"><Link to="/" class="brand">{helpers.ourInitials()}</Link></div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <Link to="/" {getProps}>Home</Link>
-                </li>
                 <li class="nav-item">
                     <Link to="/rsvp" {getProps}>RSVP</Link>
                 </li>
@@ -38,6 +35,8 @@
         font-size: xxx-large;
         font-weight: 100;
     }
+
+
 
     .nav-item {
         font-size: x-large;
