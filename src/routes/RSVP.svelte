@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { Link } from "svelte-routing";
     import { v4 as uuidv4 } from "uuid";
 
     export let sessionId: string;

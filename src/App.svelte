@@ -8,6 +8,30 @@
 
     let url: string = "";
     let sessionId: string = uuidv4();
+
+    let emoji: string = "💜";
+    let emojis = [
+        "😍",
+        "🥳",
+        "🔥",
+        "❤️‍🔥",
+        "💯",
+        "🎉",
+        "🍾",
+        "🦝",
+        "🐊",
+        "😻",
+        "🫀",
+        "🏩",
+        "💜",
+    ];
+
+    const randomizeEmoji = () => {
+        emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        setTimeout(randomizeEmoji, 5000)
+    };
+
+    randomizeEmoji();
 </script>
 
 <Router {url}>
@@ -16,10 +40,12 @@
         <Route path="rsvp"><RSVP {sessionId} /></Route>
         <Route path="/event"><Event /></Route>
         <Route path="/"><Home /></Route>
-        <div class="text-center mb-2">♥︎</div>
+        <div class="text-center mb-2 display-6">{emoji}</div>
     </main>
     <div id="footer">
-        Questions? Text Kyle at <a href="tel:757-407-1298" class="link-dark">(757) 407-1298</a>.
+        Questions? Text Kyle at <a href="tel:757-407-1298" class="link-dark"
+            >(757) 407-1298</a
+        >.
     </div>
 </Router>
 
