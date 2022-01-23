@@ -9,10 +9,9 @@
     let url: string = "";
     let sessionId: string = uuidv4();
 
-    let emoji: string = "💜";
+    let emoji: string;
     let emojis = [
-        "😍",
-        "🥳",
+        "💜",
         "🔥",
         "❤️‍🔥",
         "💯",
@@ -23,15 +22,19 @@
         "😻",
         "🫀",
         "🏩",
-        "💜",
     ];
 
-    const randomizeEmoji = () => {
-        emoji = emojis[Math.floor(Math.random() * emojis.length)];
-        setTimeout(randomizeEmoji, 5000)
+    const setEmoji = (index: number) => {
+        if (index >= emojis.length) {
+            index = 0;
+        }
+
+        emoji = emojis[index];
+
+        setTimeout(setEmoji.bind(null, index + 1), 2000);
     };
 
-    randomizeEmoji();
+    setEmoji(0);
 </script>
 
 <Router {url}>
