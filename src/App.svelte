@@ -1,131 +1,62 @@
 <script lang="ts">
-	import Input from './Input.svelte'
+    import { Router, Route } from "svelte-routing";
+    import Nav from "./Nav.svelte";
+    import Event from "./routes/Event.svelte";
+    import Home from "./routes/Home.svelte";
+    import RSVP from "./routes/RSVP.svelte";
+    import Registry from "./routes/Registry.svelte";
+    import { v4 as uuidv4 } from "uuid";
 
-	export let greeting: string;
-	export let firstName: string;
-	export let lastName: string;
-	export let rsvp: string;
-	export let partner: string;
+    let url: string = "";
+    let sessionId: string = uuidv4();
 
-	const changeGreeting = (e) => {
-		if (e.target.value.length) {
-			greeting = e.target.value;
-		} else {
-			greeting = 'friend';
-		}
-	};
+    let emoji: string;
+    let emojis = [
+        "💜",
+        "🔥",
+        "❤️‍🔥",
+        "💯",
+        "🎉",
+        "🍾",
+        "🦝",
+        "🐊",
+        "😻",
+        "🫀",
+        "🏩",
+    ];
+
+    const setEmoji = (index: number) => {
+        if (index >= emojis.length) {
+            index = 0;
+        }
+
+        emoji = emojis[index];
+
+        setTimeout(setEmoji.bind(null, index + 1), 2000);
+    };
+
+    setEmoji(0);
 </script>
 
-<main>
-	<h1>Hello {greeting}!</h1>
-	<p>Thanks for RSVPing!</p>
-
-	<form>
-		<div class="row mb-4 form-group">
-			<div class="col">
-				<Input
-				    bind:value={firstName}
-					handleBlur={changeGreeting}
-					label="First Name"
-				/>
-			</div>
-			<div class="col">
-				<Input
-				    bind:value={lastName}
-					label="Last Name"
-				/>
-			</div>
-		</div>
-
-		<div class="btn-group mb-4" role="group">
-			<input
-				bind:group={rsvp}
-				type="radio"
-				class="btn-check"
-				name="rsvp"
-				value={"Attending"}
-				id="attending"
-				autocomplete="off"
-			/>
-			<label class="btn btn-outline-primary" for="attending"
-				>I'll Be There</label
-			>
-			<input
-				bind:group={rsvp}
-				type="radio"
-				class="btn-check"
-				name="rsvp"
-				value={"Not Attending"}
-				id="notAttending"
-				autocomplete="off"
-			/>
-			<label class="btn btn-outline-primary" for="notAttending"
-				>I Can't Make It</label
-			>
-		</div>
-
-		{#if rsvp == "Attending"}
-			<div>Nice!</div>
-
-			<div>Are you bringing a partner?</div>
-			<div class="btn-group mb-4" role="group">
-				<input
-					bind:group={partner}
-					type="radio"
-					class="btn-check"
-					name="partner"
-					value={"Yes"}
-					id="partner"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-primary" for="partner">Yes</label>
-
-				<input
-					bind:group={partner}
-					type="radio"
-					class="btn-check"
-					name="partner"
-					value={"No"}
-					id="noPartner"
-					autocomplete="off"
-				/>
-				<label class="btn btn-outline-primary" for="noPartner">No</label
-				>
-			</div>
-		{/if}
-
-		{#if rsvp == "Not Attending"}
-			<div>Bummer!</div>
-		{/if}
-
-		{#if rsvp != undefined}
-			<div class="row mb-4">
-				<button type="submit" class="btn btn-primary btn-block mb-4"
-					>Submit</button
-				>
-			</div>
-		{/if}
-	</form>
-</main>
+<Router {url}>
+    <Nav />
+    <main>
+        <Route path="/rsvp"><RSVP {sessionId} /></Route>
+        <Route path="/event"><Event /></Route>
+        <Route path="/registry"><Registry /></Route>
+        <Route path="/"><Home /></Route>
+        <div class="text-center mb-2 display-6">{emoji}</div>
+    </main>
+    <div id="footer">
+        Questions? Text Kyle at <a href="tel:757-407-1298" class="link-dark"
+            >(757) 407-1298</a
+        >.
+    </div>
+</Router>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+    #footer {
+        text-align: center;
+        padding-bottom: 15px;
+    }
 </style>
