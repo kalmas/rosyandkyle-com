@@ -4,6 +4,7 @@
     import Event from "./routes/Event.svelte";
     import Home from "./routes/Home.svelte";
     import RSVP from "./routes/RSVP.svelte";
+    import Registry from "./routes/Registry.svelte";
     import { v4 as uuidv4 } from "uuid";
 
     let url: string = "";
@@ -40,8 +41,9 @@
 <Router {url}>
     <Nav />
     <main>
-        <Route path="rsvp"><RSVP {sessionId} /></Route>
+        <Route path="/rsvp"><RSVP {sessionId} /></Route>
         <Route path="/event"><Event /></Route>
+        <Route path="/registry"><Registry /></Route>
         <Route path="/"><Home /></Route>
         <div class="text-center mb-2 display-6">{emoji}</div>
     </main>
