@@ -12,6 +12,7 @@
     let phone: string;
     let partner: boolean = false;
     let kids: boolean = false;
+    let camper: boolean = false;
     let complete: boolean = false;
     let submitting: boolean = false;
 
@@ -71,6 +72,7 @@
             partnerName,
             kids,
             kidName,
+            camper,
         };
 
         const response: Response | void = await fetch(
@@ -96,15 +98,14 @@
 
 <div class="container">
     <h1 class="display-1">RSVP</h1>
-    <h2 class="display-5">Hello, {greeting}!</h2>
-
+    <h2 class="display-5 mb-3">Hello, {greeting}!</h2>
     {#if complete}
         <div class="mb-5">
-            <p class="display-6">Thanks for responding. We love you!</p>
+            <h3>Thanks for responding. We love you!</h3>
             {#if rsvp == "yes"}
-                <p class="display-6 mb-5">
+                <p class="text-justify">
                     Now check out <a class="link-primary" href="/event"
-                        >the event page</a
+                        >the Event Details page</a
                     >.
                 </p>
             {/if}
@@ -113,7 +114,7 @@
 
     {#if !complete}
         <form novalidate on:submit|preventDefault={handleSubmit}>
-            <p>
+            <p class="text-justify">
                 Thanks for RSVPing to our wedding! Please tell us a few things
                 to help us prepare.
             </p>
@@ -131,7 +132,7 @@
                 <label for="full-name">Your Name</label>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <div class="btn-group mx-auto" role="group">
                     <input
                         checked={rsvp == "yes"}
@@ -163,57 +164,57 @@
             </div>
 
             <div class="collapse" class:show={rsvp == "yes"}>
-                <div class="form-group mb-3">
-                    <p class="text-justify">
-                        <strong>Ok let's talk about Covid stuff.</strong> It seems
-                        like we will still be dealing with Covid-19 this spring so
-                        we've got to set some ground rules.
-                    </p>
+                <h3 class="mb-2">Ok, let's talk about Covid stuff 🦠</h3>
+                <p class="text-justify">
+                    <small>
+                        It seems like we will still be dealing with Covid-19
+                        this spring so we've got to set some ground rules.</small
+                    >
+                </p>
 
-                    <div class="row">
-                        <div class="btn-group mx-auto" role="group">
-                            <input
-                                checked={covid == "vaccinated"}
-                                value="vaccinated"
-                                type="radio"
-                                class="btn-check"
-                                name="covid"
-                                autocomplete="off"
-                                id="vaccinated"
-                            />
-                            <label class="btn btn-outline-dark" for="vaccinated"
-                                >I'll Be Fully Vaccinated 💉</label
-                            >
-                            <input
-                                checked={covid == "test"}
-                                value="test"
-                                type="radio"
-                                class="btn-check"
-                                name="covid"
-                                autocomplete="off"
-                                id="test"
-                            />
-                            <label class="btn btn-outline-dark" for="test"
-                                >I'll Take A Test 🧪</label
-                            >
-                            <input
-                                checked={covid == "noresponse"}
-                                value="noresponse"
-                                type="radio"
-                                class="btn-check"
-                                name="covid"
-                                autocomplete="off"
-                                id="noresponse"
-                            />
-                            <label class="btn btn-outline-dark" for="noresponse"
-                                >I'd Rather Not Say 🥸</label
-                            >
-                        </div>
+                <div class="row mb-4">
+                    <div class="btn-group mx-auto" role="group">
+                        <input
+                            checked={covid == "vaccinated"}
+                            value="vaccinated"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="vaccinated"
+                        />
+                        <label class="btn btn-outline-dark" for="vaccinated"
+                            >I'll Bring Proof of Vaccination 💉</label
+                        >
+                        <input
+                            checked={covid == "test"}
+                            value="test"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="test"
+                        />
+                        <label class="btn btn-outline-dark" for="test"
+                            >I'll Take A Test On Site 🧪</label
+                        >
+                        <input
+                            checked={covid == "noresponse"}
+                            value="noresponse"
+                            type="radio"
+                            class="btn-check"
+                            name="covid"
+                            autocomplete="off"
+                            id="noresponse"
+                        />
+                        <label class="btn btn-outline-dark" for="noresponse"
+                            >I'd Rather Not Say 🥸</label
+                        >
                     </div>
                 </div>
 
-                <h3>Give us ☎️ to text you at</h3>
-                <div class="form-floating mb-3">
+                <h3>Give us a ☎️ to text you at</h3>
+                <div class="form-floating mb-4">
                     <input
                         type="tel"
                         bind:value={phone}
@@ -227,57 +228,83 @@
                 </div>
 
                 <h3>Who are you bringing?</h3>
-                <div class="form-check mb-2">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        bind:checked={partner}
-                        id="partner"
-                    />
-                    <label class="form-check-label" for="partner">
-                        I'm bringing a partner.
-                    </label>
-                </div>
-                <div class="collapse" class:show={partner}>
-                    <div class="form-floating mb-3">
+                <div class="mb-4">
+                    <div class="form-check mb-2">
                         <input
-                            type="text"
-                            bind:value={partnerName}
-                            class="form-control"
-                            id="partner-name"
-                            pattern="^[\w.-]+(?: [\w.-]+)+$"
-                            placeholder="Partner's Name"
-                            required
+                            class="form-check-input"
+                            type="checkbox"
+                            bind:checked={partner}
+                            id="partner"
                         />
-                        <label for="full-name">Partner's Name</label>
+                        <label class="form-check-label" for="partner">
+                            I'm bringing a partner.
+                        </label>
+                    </div>
+                    <div class="collapse" class:show={partner}>
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                bind:value={partnerName}
+                                class="form-control"
+                                id="partner-name"
+                                pattern="^[\w.-]+(?: [\w.-]+)+$"
+                                placeholder="Partner's Name"
+                                required
+                            />
+                            <label for="full-name">Partner's Name</label>
+                        </div>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            bind:checked={kids}
+                            id="kids"
+                        />
+                        <label class="form-check-label" for="kids">
+                            I'm bringing my kids. (You should!)
+                        </label>
+                    </div>
+
+                    <div class="collapse" class:show={kids}>
+                        <p class="text-justify">
+                            That's great! We're planning lots of fun stuff for
+                            them to do.
+                        </p>
+                        <div class="form-floating mb-3">
+                            <textarea
+                                bind:value={kidName}
+                                class="form-control"
+                                placeholder="Kid's Name (Just List 'Em)"
+                                id="kid-names"
+                                required
+                            />
+                            <label for="kid-names"
+                                >Kid's Names (List 'Em Here)</label
+                            >
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-check mb-2">
+                <h3>Accommodations 🏕</h3>
+                <p class="text-justify">
+                    <small
+                        >This party is at a state park and we will have a large
+                        group camp site available. If you are interested in
+                        camping, let us know. There are also hotels nearby, more
+                        details about that are on the Event Details page.</small
+                    >
+                </p>
+                <div class="form-check mb-4">
                     <input
                         class="form-check-input"
                         type="checkbox"
-                        bind:checked={kids}
-                        id="kids"
+                        bind:checked={camper}
+                        id="camper"
                     />
-                    <label class="form-check-label" for="kids">
-                        I'm bringing my kid(s).
+                    <label class="form-check-label" for="camper">
+                        Tell me more about camping!
                     </label>
-                </div>
-
-                <div class="collapse" class:show={kids}>
-                    <div class="form-floating mb-3">
-                        <textarea
-                            bind:value={kidName}
-                            class="form-control"
-                            placeholder="Kid's Name (Just List 'Em)"
-                            id="kid-names"
-                            required
-                        />
-                        <label for="kid-names"
-                            >Kid's Names (List 'Em Here)</label
-                        >
-                    </div>
                 </div>
             </div>
 
@@ -320,13 +347,13 @@
         background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
     }
 
-    .submit {
+    /* .submit {
         max-width: 90%;
     }
 
     .btn-group {
-        max-width: 90%;
-    }
+        max-width: 100%;
+    } */
 
     textarea {
         height: 100px !important;
