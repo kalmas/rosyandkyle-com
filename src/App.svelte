@@ -48,8 +48,9 @@
         <div class="text-center mb-2 display-6">{emoji}</div>
     </main>
     <div id="footer">
-        Questions? Text Kyle at <a href="tel:757-407-1298" class="link-dark"
-            >(757) 407-1298</a
+        If you have questions, text Kyle at <a
+            href="tel:757-407-1298"
+            class="link-dark">(757) 407-1298</a
         >.
     </div>
 </Router>

@@ -9,7 +9,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest",
     "sync": "aws s3 sync public s3://rosyandkyle.com/ --delete",
-    "uncache": "aws cloudfront create-invalidation --distribution-id E1GFE6SI71Q2TE --paths='/*' > invalidation.log",
+    "uncache": "aws cloudfront create-invalidation --distribution-id E1GFE6SI71Q2TE --paths=/ > invalidation.log",
     "deploy": "npm run build && npm run sync && npm run uncache"
   },
   "devDependencies": {

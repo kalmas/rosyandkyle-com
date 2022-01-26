@@ -167,8 +167,14 @@
                 <h3 class="mb-2">Ok, let's talk about Covid stuff 🦠</h3>
                 <p class="text-justify">
                     <small>
-                        It seems like we will still be dealing with Covid-19
-                        this spring so we've got to set some ground rules.</small
+                        It seems like we'll still be dealing with Covid-19 this
+                        Spring, so we've got to set some ground rules. In order
+                        to keep this party as safe as possible we would like
+                        everyone for everyone to be vaccinated to the fullest
+                        extent possible. If you cannot provide proof of
+                        vaccination, we will ask you to take a test before the
+                        event. We know this all sucks, but them's the breaks
+                        kids.</small
                     >
                 </p>
 
@@ -196,7 +202,7 @@
                             id="test"
                         />
                         <label class="btn btn-outline-dark" for="test"
-                            >I'll Take A Test On Site 🧪</label
+                            >I'll Take A Test Before 🧪</label
                         >
                         <input
                             checked={covid == "noresponse"}
@@ -208,7 +214,7 @@
                             id="noresponse"
                         />
                         <label class="btn btn-outline-dark" for="noresponse"
-                            >I'd Rather Not Say 🥸</label
+                            >Call Me About It 🥸</label
                         >
                     </div>
                 </div>
@@ -346,14 +352,6 @@
         background-position: right calc(0.375em + 0.1875rem) center;
         background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
     }
-
-    /* .submit {
-        max-width: 90%;
-    }
-
-    .btn-group {
-        max-width: 100%;
-    } */
 
     textarea {
         height: 100px !important;
