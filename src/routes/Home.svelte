@@ -10,5 +10,5 @@
     <h2 class="display-3">
         <a class="link-primary" href="/rsvp">Please RSVP Here!</a>
     </h2>
-    <img class="img-fluid mb-2" alt="Kyle and Rosy" src="rosyandkyle.webp" />
+    <img class="img-fluid mb-2" alt="Kyle and Rosy" src="img/rosyandkyle.webp" />
 </div>
