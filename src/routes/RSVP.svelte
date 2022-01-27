@@ -164,7 +164,7 @@
             </div>
 
             <div class="collapse" class:show={rsvp == "yes"}>
-                <h3 class="mb-2">Ok, let's talk about Covid stuff 🦠</h3>
+                <h3 class="mb-2">Ok, let's talk about Covid 🦠</h3>
                 <p class="text-justify">
                     <small>
                         It seems that we'll still be dealing with Covid-19 this
