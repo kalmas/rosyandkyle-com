@@ -145,7 +145,7 @@
                         id="attending"
                     />
                     <label class="btn btn-outline-dark" for="attending"
-                        >I'll Be There ✅</label
+                        >I'll Be There<br>✅</label
                     >
                     <input
                         checked={rsvp == "no"}
@@ -158,7 +158,7 @@
                         id="not-attending"
                     />
                     <label class="btn btn-outline-dark" for="not-attending"
-                        >I Can't Make It ❌</label
+                        >I Can't Make It<br>❌</label
                     >
                 </div>
             </div>
@@ -167,14 +167,13 @@
                 <h3 class="mb-2">Ok, let's talk about Covid stuff 🦠</h3>
                 <p class="text-justify">
                     <small>
-                        It seems like we'll still be dealing with Covid-19 this
-                        Spring, so we've got to set some ground rules. In order
-                        to keep this party as safe as possible we would like
-                        everyone for everyone to be vaccinated to the fullest
-                        extent possible. If you cannot provide proof of
-                        vaccination, we will ask you to take a test before the
-                        event. We know this all sucks, but them's the breaks
-                        kids.</small
+                        It seems that we'll still be dealing with Covid-19 this
+                        Spring, so we've got to set some ground rules. To keep
+                        this party as safe as possible <strong>we request that everyone
+                        in attendance be vaccinated</strong> to the fullest extent
+                        possible. If you cannot provide proof of vaccination, we
+                        will ask you to take a test before the event. We know
+                        this all sucks, but them's the breaks kids.</small
                     >
                 </p>
 
@@ -190,7 +189,7 @@
                             id="vaccinated"
                         />
                         <label class="btn btn-outline-dark" for="vaccinated"
-                            >I'll Bring Proof of Vaccination 💉</label
+                            >I'll Bring Proof of Vaccination<br>💉</label
                         >
                         <input
                             checked={covid == "test"}
@@ -202,7 +201,7 @@
                             id="test"
                         />
                         <label class="btn btn-outline-dark" for="test"
-                            >I'll Take A Test Before 🧪</label
+                            >I'll Take A Test Before<br>🧪</label
                         >
                         <input
                             checked={covid == "noresponse"}
@@ -214,7 +213,7 @@
                             id="noresponse"
                         />
                         <label class="btn btn-outline-dark" for="noresponse"
-                            >Call Me About It 🥸</label
+                            >Call Me About It<br>🥸</label
                         >
                     </div>
                 </div>
@@ -355,5 +354,9 @@
 
     textarea {
         height: 100px !important;
+    }
+
+    .submit {
+        max-width: 96%;
     }
 </style>

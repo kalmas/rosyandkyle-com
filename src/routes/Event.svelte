@@ -42,7 +42,7 @@
 
     <figure class="mt-3">
         <figcaption class="lead">
-            Map of the park with important places highlighted:
+            Map of the park
         </figcaption>
         <Image src="img/map1.webp" alt="Map of Pocahontas State Park" />
     </figure>
@@ -52,7 +52,7 @@
     held:
 
     <div class="mt-2">
-        Fairfield Inn Chester -
+        <strong>Fairfield Inn -</strong>
         <a href="tel:804-778-7500" class="link-primary">(804) 778-7500</a><br />
         9 Rooms Held Under "Almas"<br />
         <a
@@ -61,7 +61,7 @@
         >
     </div>
     <div class="mt-2">
-        Country Inn and Suites Chester -
+        <strong>Country Inn and Suites -</strong>
         <a href="tel:804-751-0080" class="link-primary">(804) 751-0080</a><br />
         5 Rooms Held Under "Almas"<br />
         <a
@@ -72,7 +72,7 @@
 
     <figure class="mt-3">
         <figcaption class="lead">
-            Map of Park (🎉) and Hotels (🏨) Relative to Richmond:
+            The Park (🎉) and Nearby Hotels (🏨)
         </figcaption>
         <Image src="img/map3.webp" alt="Map of Greater Richmond" />
     </figure>
@@ -83,7 +83,7 @@
     you all the details.
 
     <figure class="mt-3">
-        <figcaption class="lead">Group Camp Site:</figcaption>
+        <figcaption class="lead">Group Camp Site</figcaption>
         <Image src="img/group-campsite.webp" alt="Group Campsite" />
     </figure>
 </div>
