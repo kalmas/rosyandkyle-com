@@ -1,5 +1,6 @@
 <script lang="ts">
     import helpers from "../helpers";
+    import Image from "../Image.svelte";
 </script>
 
 <div class="container text-center">
@@ -10,5 +11,5 @@
     <h2 class="display-3">
         <a class="link-primary" href="/rsvp">Please RSVP Here!</a>
     </h2>
-    <img class="img-fluid mb-2" alt="Kyle and Rosy" src="img/rosyandkyle.webp" />
+    <Image src="img/rosyandkyle.webp" alt="Kyle and Rosy" />
 </div>
