@@ -145,7 +145,7 @@
                         id="attending"
                     />
                     <label class="btn btn-outline-dark" for="attending"
-                        >I'll Be There<br>✅</label
+                        >I'll Be There<br />✅</label
                     >
                     <input
                         checked={rsvp == "no"}
@@ -158,7 +158,7 @@
                         id="not-attending"
                     />
                     <label class="btn btn-outline-dark" for="not-attending"
-                        >I Can't Make It<br>❌</label
+                        >I Can't Make It<br />❌</label
                     >
                 </div>
             </div>
@@ -167,14 +167,13 @@
                 <h3 class="mb-2">Ok, let's talk about Covid 🦠</h3>
                 <p class="text-justify">
                     <small>
-                        It seems that we'll still be dealing with Covid-19 this
-                        Spring, so we've got to set some ground rules. To keep
-                        this party as safe as possible <strong>we request that everyone
-                        in attendance be vaccinated</strong> to the fullest extent
-                        possible. If you cannot provide proof of vaccination, we
-                        will ask you to take a test before the event. We know
-                        this all sucks, but them's the breaks kids.</small
-                    >
+                        Out of love and respect for our family and friends, we
+                        are asking that everyone who attends be vaccinated
+                        (highly highly encouraged!) or test negative for
+                        COVID-19 the day of the wedding. Please get vaccinated
+                        ❤️ We love you and cannot wait to celebrate safely with
+                        you.
+                    </small>
                 </p>
 
                 <div class="row mb-4">
@@ -189,7 +188,7 @@
                             id="vaccinated"
                         />
                         <label class="btn btn-outline-dark" for="vaccinated"
-                            >I'll Bring Proof of Vaccination<br>💉</label
+                            >I'll Have Proof of Vaccination<br />💉</label
                         >
                         <input
                             checked={covid == "test"}
@@ -201,7 +200,7 @@
                             id="test"
                         />
                         <label class="btn btn-outline-dark" for="test"
-                            >I'll Take A Test Before<br>🧪</label
+                            >I'll Take A Test Before<br />🧪</label
                         >
                         <input
                             checked={covid == "noresponse"}
@@ -213,7 +212,7 @@
                             id="noresponse"
                         />
                         <label class="btn btn-outline-dark" for="noresponse"
-                            >Call Me About It<br>🥸</label
+                            >Call Me About It<br />🥸</label
                         >
                     </div>
                 </div>
