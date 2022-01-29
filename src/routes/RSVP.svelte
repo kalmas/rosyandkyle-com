@@ -7,9 +7,9 @@
     let partnerName: string = "";
     let kidName: string = "";
     let name: string = "";
-    let rsvp: string = undefined;
-    let covid: string;
-    let phone: string;
+    let rsvp: string = "";
+    let covid: string = "";
+    let phone: string = "";
     let partner: boolean = false;
     let kids: boolean = false;
     let camper: boolean = false;
@@ -44,6 +44,14 @@
         errorMsg = msg;
     };
 
+    const nullIfEmpty = (input: string) => {
+        if (input) {
+            return input;
+        } else {
+            return null;
+        }
+    };
+
     const handleSubmit = async () => {
         submitting = true;
         error = false;
@@ -66,20 +74,20 @@
             return;
         }
 
-        const cleanPhone = phone.replace(/-/g, '');
+        const cleanPhone = phone.replace(/-/g, "");
 
         submission = {
             id,
             sessionId,
             name: cleanName,
             rsvp: cleanRsvp,
-            covid,
-            phone: cleanPhone,
+            covid: nullIfEmpty(covid),
+            phone: nullIfEmpty(cleanPhone),
             partner,
-            partnerName,
+            partnerName: nullIfEmpty(partnerName),
             kids,
-            kidName,
-            camper,
+            kidName: nullIfEmpty(kidName),
+            camper
         };
 
         const response: Response | void = await fetch(
