@@ -1,7 +1,21 @@
-var AWS = require('aws-sdk');
-var dynamo = new AWS.DynamoDB.DocumentClient();
+const AWS = require('aws-sdk');
+const dynamo = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
+const ses = new AWS.SES({ region: "us-east-1" });
 
-exports.handler = function (event, context, callback) {
+const error = {
+    "statusCode": 500,
+    "body": { "message": "Unexpected error!" }
+};
+
+const ok = {
+    statusCode: 201,
+    body: { "message": "Great Job!" }
+};
+
+exports.handler = async (event, context) => {
+    let recordSaved = false;
+    let emailSent = false;
+
     event.time = new Date().toISOString();
     event.type = 'rsvp';
 
@@ -12,16 +26,39 @@ exports.handler = function (event, context, callback) {
         Item: event
     }
 
-    dynamo.put(params, callback);
+    try {
+        await dynamo.put(params).promise();
+        console.log("saved record")
+        recordSaved = true;
+    } catch (e) {
+        console.error(e.message);
+    }
 
-    const response = {
-        statusCode: 201,
-        headers: {
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "OPTIONS,POST"
+    const emailParams = {
+        Destination: {
+            ToAddresses: ["kylealmas@gmail.com"],
         },
-        body: { "message": "Great Job!" }
+        Message: {
+            Body: {
+                Text: { Data: JSON.stringify(event, null, 2) },
+            },
+
+            Subject: { Data: "New RSVP!" },
+        },
+        Source: "kyle@rosyandkyle.com",
     };
-    return response;
+
+    try {
+        await ses.sendEmail(emailParams).promise();
+        console.log("sent email")
+        emailSent = true;
+    } catch (e) {
+        console.error(e.message);
+    }
+
+    if (!recordSaved || !emailSent) {
+        return error;
+    }
+
+    return ok;
 };

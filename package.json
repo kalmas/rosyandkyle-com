@@ -17,6 +17,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
+    "aws-sdk": "^2.1066.0",
     "jest": "^27.4.7",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
