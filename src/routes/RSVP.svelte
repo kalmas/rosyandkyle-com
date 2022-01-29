@@ -34,6 +34,10 @@
         rsvp = e.target.value;
     };
 
+    const covidChange = (e) => {
+        covid = e.target.value;
+    };
+
     const setError = (msg: string) => {
         submitting = false;
         error = true;
@@ -56,10 +60,13 @@
         }
 
         const cleanRsvp = rsvp == "yes" ? true : false;
+
         if (cleanRsvp && phone === undefined) {
             setError("Please give us a number to text you at.");
             return;
         }
+
+        const cleanPhone = phone.replace(/-/g, '');
 
         submission = {
             id,
@@ -67,7 +74,7 @@
             name: cleanName,
             rsvp: cleanRsvp,
             covid,
-            phone,
+            phone: cleanPhone,
             partner,
             partnerName,
             kids,
@@ -184,6 +191,7 @@
                     <div class="btn-group mx-auto" role="group">
                         <input
                             checked={covid == "vaccinated"}
+                            on:change={covidChange}
                             value="vaccinated"
                             type="radio"
                             class="btn-check"
@@ -196,6 +204,7 @@
                         >
                         <input
                             checked={covid == "test"}
+                            on:change={covidChange}
                             value="test"
                             type="radio"
                             class="btn-check"
@@ -208,6 +217,7 @@
                         >
                         <input
                             checked={covid == "noresponse"}
+                            on:change={covidChange}
                             value="noresponse"
                             type="radio"
                             class="btn-check"
