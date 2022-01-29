@@ -6,7 +6,9 @@
     <h1 class="display-1">Event Details</h1>
 
     <h2 class="mt-3 display-4">Time</h2>
-    <time datetime="2022-05-28T16:00-0400">Saturday, May 28, 2022 at 4pm</time>
+    <time datetime="2022-05-28T16:00-0400" class="lead"
+        >Saturday, May 28, 2022 at 4pm</time
+    >
     <div class="mt-2">
         <a
             href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20220528T200000Z%2F20220529T020000Z&details=Ceremony%20-%20CCC%20Museum%20https%3A%2F%2Fgoo.gl%2Fmaps%2FbLicy3ahWCyUpKj9A%0AReception%20-%20Powhatan%20Dining%20Hall%20https%3A%2F%2Fgoo.gl%2Fmaps%2FJJHDWwvg38BewGBH8&location=Pocahontas%20State%20Park&text=Rosy%20and%20Kyle%20Get%20Married"
@@ -24,7 +26,7 @@
 
     <h2 class="mt-3 display-4">Place</h2>
     <a href="https://goo.gl/maps/dkoZAN7CG6rmUXUHA" target="blank">
-        <address>
+        <address class="lead">
             Pocahontas State Park<br />
             10301 State Park Rd<br />
             Chesterfield, VA 23832
@@ -41,9 +43,7 @@
     </div>
 
     <figure class="mt-3">
-        <figcaption class="lead">
-            Map of the park
-        </figcaption>
+        <figcaption class="display-6 mb-2">Map of the Park</figcaption>
         <Image src="img/map1.webp" alt="Map of Pocahontas State Park" />
     </figure>
 
@@ -71,8 +71,8 @@
     </div>
 
     <figure class="mt-3">
-        <figcaption class="lead">
-            The Park (🎉) and Nearby Hotels (🏨)
+        <figcaption class="display-6 mb-2">
+            The Park (🎉) and Hotels (🏨)
         </figcaption>
         <Image src="img/map3.webp" alt="Map of Greater Richmond" />
     </figure>
@@ -83,7 +83,7 @@
     you all the details.
 
     <figure class="mt-3">
-        <figcaption class="lead">Group Camp Site</figcaption>
+        <figcaption class="display-6 mb-2">Group Camp Site</figcaption>
         <Image src="img/group-campsite.webp" alt="Group Campsite" />
     </figure>
 </div>

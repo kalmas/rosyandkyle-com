@@ -115,8 +115,12 @@
     {#if !complete}
         <form novalidate on:submit|preventDefault={handleSubmit}>
             <p class="text-justify">
-                Thanks for RSVPing to our wedding! Please tell us a few things
-                to help us prepare.
+                Thanks for RSVPing! Our wedding is on <strong
+                    >Sat May 28th, 2022 at 4pm</strong
+                >. For more info please see <a href="/event">Event Details</a>.
+            </p>
+            <p class="text-justify">
+                Please tell us a few things to help us prepare.
             </p>
             <div class="form-floating mb-3">
                 <input

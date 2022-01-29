@@ -7,6 +7,8 @@
         >.
     </p>
     <h2>
-        <a href="https://gofund.me/8f36c7da">Go Donate To Our Fundraiser</a>
+        <a href="https://gofund.me/8f36c7da"
+            >Please Go Donate To Our Charity Drive</a
+        >
     </h2>
 </div>
