@@ -57,24 +57,23 @@
         error = false;
 
         const cleanName = name.trim();
-        if (!/^[\w.-]+(?: [\w.-]+)+$/.test(cleanName)) {
+        if (!cleanName) {
             setError("Please tell us your full name.");
             return;
         }
 
-        if (rsvp === undefined) {
+        if (!rsvp) {
             setError("Please tell us if you can come.");
             return;
         }
 
-        const cleanRsvp = rsvp == "yes" ? true : false;
-
-        if (cleanRsvp && phone === undefined) {
+        const cleanRsvp = rsvp === "yes" ? true : false;
+        if (cleanRsvp && !phone) {
             setError("Please give us a number to text you at.");
             return;
         }
 
-        const cleanPhone = phone.replace(/-/g, "");
+        const cleanPhone = phone.replace(/[- ]/g, "");
 
         submission = {
             id,
@@ -87,7 +86,7 @@
             partnerName: nullIfEmpty(partnerName),
             kids,
             kidName: nullIfEmpty(kidName),
-            camper
+            camper,
         };
 
         const response: Response | void = await fetch(
