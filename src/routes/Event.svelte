@@ -5,9 +5,9 @@
 <div class="container">
     <h1 class="display-1">Event Details</h1>
 
-    <h2 class="mt-3 display-4">Time</h2>
+    <h2 id="time" class="mt-3 display-4">Time ⌚️</h2>
     <time datetime="2022-05-28T16:00-0400" class="lead"
-        >Saturday, May 28, 2022 at 4pm</time
+        >Saturday, <strong>May 28, 2022</strong> at <strong>4pm</strong></time
     >
     <div class="mt-2">
         <a
@@ -24,7 +24,14 @@
         >
     </div>
 
-    <h2 class="mt-3 display-4">Place</h2>
+    <h2 id="dress" class="mt-3 display-4">Dress 🎩</h2>
+    Anything from "Casual" to "Semi-Formal", wear what makes you feel comfortable
+    and is easy to dance in!
+
+    <h2 id="covid" class="mt-3 display-4">Covid 🦠</h2>
+    Please bring proof of vaccination or a of negative test within the last day. We will have a limited number of instant tests on hand.
+
+    <h2 id="place" class="mt-3 display-4">Place 🗺</h2>
     <a href="https://goo.gl/maps/dkoZAN7CG6rmUXUHA" target="blank">
         <address class="lead">
             Pocahontas State Park<br />
@@ -47,7 +54,7 @@
         <Image src="img/map1.webp" alt="Map of Pocahontas State Park" />
     </figure>
 
-    <h2 class="mt-3 display-4">Hotels</h2>
+    <h2 id="hotels" class="mt-3 display-4">Hotels 🏨</h2>
     The closest hotels are about 10 minutes away off of I-95. We have some rooms
     held:
 
@@ -77,7 +84,7 @@
         <Image src="img/map3.webp" alt="Map of Greater Richmond" />
     </figure>
 
-    <h2 class="mt-3 display-4">Camping</h2>
+    <h2 id="camping" class="mt-3 display-4">Camping 🏕</h2>
     We have reserved a large group campsite with several cabins and room to sleep
     28 people. Please let us know if you're interested in camping and we'll give
     you all the details.
