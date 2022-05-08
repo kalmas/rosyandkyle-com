@@ -29,7 +29,7 @@
     and is easy to dance in!
 
     <h2 id="covid" class="mt-3 display-4">Covid 🦠</h2>
-    Please bring proof of vaccination or a of negative test within the last day. We will have a limited number of instant tests on hand.
+    Please bring proof of vaccination or of a negative test within the last day. We will have a limited number of instant tests on hand.
 
     <h2 id="place" class="mt-3 display-4">Place 🗺</h2>
     <a href="https://goo.gl/maps/dkoZAN7CG6rmUXUHA" target="blank">
